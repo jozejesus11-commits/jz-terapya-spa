@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
@@ -14,22 +13,21 @@
     .logo{width:64px;height:64px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px}
     h1{margin:0;font-size:20px}
     main{max-width:1100px;margin:20px auto;padding:0 18px}
-    .grid{display:grid;grid-template-columns:1fr;gap:20px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
     .card{background:white;border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
     .hero{display:flex;gap:18px;align-items:center}
     .hero img{width:100%;height:220px;object-fit:cover;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
     label{font-weight:600}
     .small{font-size:13px;color:var(--muted)}
     input[type=text],input[type=number],select,textarea{padding:8px;border-radius:8px;border:1px solid #e6e6e6;width:100%}
-    .durations-list{margin-top:8px;border-radius:8px;padding:8px;background:#f8feff;border:1px solid #e6f7fb}
-    .dur-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;margin-bottom:6px;background:white;border:1px solid #f0f0f0}
-    .dur-item strong{font-size:15px}
-    .dur-price{color:var(--accent2);font-weight:700}
+    .durations{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .dur-btn{background:#f2f7f9;border-radius:8px;padding:8px 12px;border:1px solid rgba(0,0,0,0.04);cursor:pointer}
+    .dur-btn.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white}
     .cta{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
     button{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:white;border:0;padding:10px 14px;border-radius:9px;cursor:pointer}
     .secondary{background:#fff;border:1px solid #ddd;color:var(--dark)}
     .qr{background:#fff;padding:10px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.03);display:inline-block}
-    footer{max-width:1100px;margin:22px auto;padding:16px 18px;color:#666;font-size:14px}
+    footer{max-width:1100px;margin:22px auto;padding:0 18px;color:#666;font-size:14px}
     .tag{display:inline-block;padding:6px 8px;border-radius:8px;background:#f0fbff;color:var(--accent1);font-weight:700}
   </style>
 </head>
@@ -40,131 +38,154 @@
       <h1>JZ Terapya & Spa</h1>
       <div class="small">Cuidando do seu corpo e mente com toque profissional</div>
     </div>
-  </header>  <main>
-    <div class="card">
-      <div class="hero" style="gap:16px">
-        <div style="flex:1">
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=cb0e6d1d0fc8da1c2d5f7b8aa0c3f0b1" alt="Banner massagem">
-        </div>
-        <div style="width:320px">
-          <div class="tag">Bem-estar • Atendimento personalizado</div>
-          <h2 style="margin-top:12px">Relaxe, renove e reviva sua energia</h2>
-          <p class="small" style="margin-top:6px">Massagens profissionais com opções de óleo, creme e tempo personalizado. Escolha área do corpo e duração — pague facilmente via Pix.</p>
-        </div>
-      </div><hr style="margin:14px 0">
+  </header>
 
-  <div>
-    <label>Serviços de Massagem</label>
-    <p class="small" style="margin-top:6px">Escolha duração, aplicação e partes do corpo. O preço atualiza automaticamente (R$ 0,75 por minuto).</p>
-
-    <div style="margin-top:10px;display:flex;gap:18px;align-items:flex-start">
-      <div style="flex:1">
-        <label>Selecione duração</label>
-
-        <!-- nova lista clara de durações com preços visíveis -->
-        <div class="durations-list" id="durationsList">
-          <!-- preenchido via JS -->
-        </div>
-
-        <div style="margin-top:12px">
-          <div class="small">Ou informe minutos personalizados:</div>
-          <input id="customMinutes" type="number" min="1" placeholder="ex: 45" style="margin-top:6px"/>
-        </div>
-      </div>
-
-      <div style="width:280px">
-        <label>Aplicação</label>
-        <div style="margin-top:8px">
-          <div style="margin-top:6px"><input type="radio" name="application" value="none" id="app_none" checked> <label for="app_none"> Sem óleo e sem creme (+R$ 0,00)</label></div>
-          <div style="margin-top:6px"><input type="radio" name="application" value="oil" id="app_oil"> <label for="app_oil"> Com óleo (sem creme) (+R$ 0,50)</label></div>
-          <div style="margin-top:6px"><input type="radio" name="application" value="cream" id="app_cream"> <label for="app_cream"> Com creme (sem óleo) (+R$ 0,50)</label></div>
-          <div style="margin-top:6px"><input type="radio" name="application" value="both" id="app_both"> <label for="app_both"> Com óleo + creme (+R$ 1,00)</label></div>
-        </div>
-
-        <div style="margin-top:12px">
-          <label>Partes do corpo</label>
-          <div style="margin-top:8px;display:grid;grid-template-columns:repeat(1,1fr);gap:8px">
-            <label><input type="checkbox" class="bodyPart" value="costas"> Costas (+R$ 0,50)</label>
-            <label><input type="checkbox" class="bodyPart" value="pernas"> Pernas (+R$ 0,50)</label>
-            <label><input type="checkbox" class="bodyPart" value="bracos"> Braços (+R$ 0,50)</label>
-            <label><input type="checkbox" class="bodyPart" value="pes"> Pés (+R$ 0,50)</label>
-            <label><input type="checkbox" class="bodyPart" value="ombros"> Ombros e pescoço (+R$ 0,50)</label>
-            <label><input type="checkbox" class="bodyPart" value="completo"> Corpo completo (+R$ 10,00)</label>
+  <main>
+    <div class="grid">
+      <div>
+        <div class="card">
+          <div class="hero" style="gap:16px">
+            <div style="flex:1">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=cb0e6d1d0fc8da1c2d5f7b8aa0c3f0b1" alt="Banner massagem">
+            </div>
+            <div style="width:320px">
+              <div class="tag">Bem-estar • Atendimento personalizado</div>
+              <h2 style="margin-top:12px">Relaxe, renove e reviva sua energia</h2>
+              <p class="small" style="margin-top:6px">Massagens profissionais com opções de óleo, creme e tempo personalizado. Escolha área do corpo e duração — pague facilmente via Pix.</p>
+            </div>
           </div>
-          <div class="small" style="margin-top:6px">Marcar Corpo completo adiciona R$10 e ignora as taxas individuais.</div>
+
+          <hr style="margin:14px 0">
+
+          <div>
+            <label>Serviços de Massagem</label>
+            <p class="small" style="margin-top:6px">Escolha duração, aplicação e partes do corpo. O preço atualiza automaticamente (R$ 0,75 por minuto).</p>
+
+            <div style="margin-top:10px">
+              <div style="display:flex;gap:12px;align-items:center">
+                <div style="flex:1">
+                  <label>Selecione duração</label>
+                  <div class="durations" id="durationsContainer"></div>
+                  <div style="margin-top:10px" class="small">Ou informe minutos personalizados:</div>
+                  <input id="customMinutes" type="number" min="1" placeholder="ex: 45" style="margin-top:6px"/>
+                </div>
+                <div style="width:220px">
+                  <label>Aplicação</label>
+                  <div style="margin-top:8px">
+                    <div style="margin-top:6px"><input type="radio" name="application" value="none" id="app_none" checked> <label for="app_none"> Sem óleo e sem creme (+R$ 0,00)</label></div>
+                    <div style="margin-top:6px"><input type="radio" name="application" value="oil" id="app_oil"> <label for="app_oil"> Com óleo (sem creme) (+R$ 0,50)</label></div>
+                    <div style="margin-top:6px"><input type="radio" name="application" value="cream" id="app_cream"> <label for="app_cream"> Com creme (sem óleo) (+R$ 0,50)</label></div>
+                    <div style="margin-top:6px"><input type="radio" name="application" value="both" id="app_both"> <label for="app_both"> Com óleo + creme (+R$ 1,00)</label></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label>Partes do corpo</label>
+              <div style="margin-top:8px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+                <label><input type="checkbox" class="bodyPart" value="costas"> Costas (+R$ 0,50)</label>
+                <label><input type="checkbox" class="bodyPart" value="pernas"> Pernas (+R$ 0,50)</label>
+                <label><input type="checkbox" class="bodyPart" value="bracos"> Braços (+R$ 0,50)</label>
+                <label><input type="checkbox" class="bodyPart" value="pes"> Pés (+R$ 0,50)</label>
+                <label><input type="checkbox" class="bodyPart" value="ombros"> Ombros e pescoço (+R$ 0,50)</label>
+                <label><input type="checkbox" class="bodyPart" value="completo"> Corpo completo (+R$ 10,00)</label>
+              </div>
+              <div class="small" style="margin-top:6px">Marcar Corpo completo adiciona R$10 e ignora as taxas individuais.</div>
+            </div>
+
+            <hr style="margin:12px 0">
+
+            <div>
+              <label>Dados do cliente</label>
+              <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <input id="clientName" type="text" placeholder="Nome do cliente" />
+                <input id="clientPhone" type="text" placeholder="WhatsApp (somente números)" />
+              </div>
+
+              <div class="cta">
+                <button id="calcBtn">Calcular preço</button>
+                <button id="pixBtn" class="secondary">Gerar Pix (QR)</button>
+                <button id="whatsBtn" class="secondary">Agendar via WhatsApp</button>
+              </div>
+            </div>
+
+            <div id="summary" style="margin-top:12px"></div>
+
+          </div>
         </div>
 
+        <div style="margin-top:14px" class="card">
+          <h3>Termos rápidos</h3>
+          <p class="small">O Pix gerado é uma simulação para facilitar pagamentos. Confirme sempre o recebimento no seu app bancário. Para cobranças dinâmicas e confirmação automática, integre com um PSP (Mercado Pago, Gerencianet).</p>
+        </div>
       </div>
+
+      <aside>
+        <div class="card">
+          <h3>Contato & Redes</h3>
+          <p class="small">WhatsApp: <strong id="showWhats">+55 16 98873-2977</strong></p>
+          <p class="small">Instagram: <a href="https://instagram.com/jose2.284" target="_blank">@jose2.284</a></p>
+          <p class="small">Chave Pix (recebimento): <strong id="showPix">jozejesus11@gmail.com</strong></p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Pagamento (Pix)</h3>
+          <p class="small">Ao gerar o Pix, você verá o QR visual e o campo «copia e cola». Esse gerador é uma simulação compatível com vários apps — para uso profissional, ative um PSP.</p>
+        </div>
+      </aside>
     </div>
+  </main>
 
-    <hr style="margin:12px 0">
-
-    <div>
-      <label>Dados do cliente</label>
-      <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-        <input id="clientName" type="text" placeholder="Nome do cliente" />
-        <input id="clientPhone" type="text" placeholder="WhatsApp (somente números)" />
-      </div>
-
-      <div class="cta">
-        <button id="calcBtn">Calcular preço</button>
-        <button id="pixBtn" class="secondary">Gerar Pix (copia & cola)</button>
-        <button id="whatsBtn" class="secondary">Agendar via WhatsApp</button>
-      </div>
-    </div>
-
-    <div id="summary" style="margin-top:12px"></div>
-
-  </div>
-
-</div>
-
-<!-- contatos movidos para cá (embaixo) -->
-<div class="card" style="margin-top:14px">
-  <h3>Contato & Redes</h3>
-  <p class="small">WhatsApp: <strong id="showWhats">+55 16 98873-2977</strong></p>
-  <p class="small">Instagram: <a href="https://instagram.com/jose2.284" target="_blank">@jose2.284</a></p>
-  <div class="small" style="margin-top:6px">Para pagamentos, gere o código Pix (copia & cola) no botão correspondente.</div>
-</div>
-
-<div class="card" style="margin-top:12px">
-  <h3>Observações sobre Pix</h3>
-  <p class="small">O gerador aqui cria um código "copia e cola" e uma linha para pagamento — é uma simulação que facilita o pagamento. Para cobrança oficial (QR dinâmico e confirmações automáticas) integre com um PSP.</p>
-</div>
-
-  </main>  <footer>
+  <footer>
     © <span id="year"></span> JZ Terapya & Spa — Desenvolvido para você.
-  </footer>  <script>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <script>
     // Configurações
     const PRICE_PER_MIN = 0.75;
     const DURATIONS = [ {label:'5 min', minutes:5}, {label:'10 min', minutes:10}, {label:'30 min', minutes:30}, {label:'1 h', minutes:60}, {label:'1h30', minutes:90} ];
     const APP_FEES = { none:0.00, oil:0.50, cream:0.50, both:1.00 };
     const PART_FEES = { costas:0.5, pernas:0.5, bracos:0.5, pes:0.5, ombros:0.5, completo:10.0 };
 
-    const PIX_KEY = 'jozejesus11@gmail.com'; // usado apenas para gerar copia & cola (não exibido)
+    const PIX_KEY = 'jozejesus11@gmail.com';
     const SHOW_WHATS = '+55 16 98873-2977';
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('showPix').textContent = PIX_KEY;
     document.getElementById('showWhats').textContent = SHOW_WHATS;
 
-    // Preenche lista de durações (visível com preços)
-    const durList = document.getElementById('durationsList');
+    // Preenche botões de duração
+    const durCont = document.getElementById('durationsContainer');
     DURATIONS.forEach(d=>{
-      const div = document.createElement('div');
-      div.className = 'dur-item';
-      div.innerHTML = `<label style="display:flex;gap:8px;align-items:center"><input type=radio name=duration data-mins="${d.minutes}" /> <strong>${d.label}</strong></label><div class="dur-price">R$ ${(PRICE_PER_MIN * d.minutes).toFixed(2)}</div>`;
-      div.querySelector('input').addEventListener('change', ()=>{ document.getElementById('customMinutes').value=''; updateSummary(); });
-      durList.appendChild(div);
+      const btn = document.createElement('button');
+      btn.type='button';
+      btn.className='dur-btn';
+      btn.textContent = `${d.label} — R$ ${ (PRICE_PER_MIN * d.minutes).toFixed(2)}`;
+      btn.dataset.minutes = d.minutes;
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.dur-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('customMinutes').value = '';
+        updateSummary();
+      });
+      durCont.appendChild(btn);
     });
 
     function getSelectedMinutes(){
-      const r = document.querySelector('input[name="duration"]:checked');
-      if(r) return Number(r.dataset.mins);
+      const active = document.querySelector('.dur-btn.active');
+      if(active) return Number(active.dataset.minutes);
       const custom = Number(document.getElementById('customMinutes').value);
       return (!isNaN(custom) && custom>0) ? custom : 0;
     }
     function getSelectedApp(){ return document.querySelector('input[name="application"]:checked').value; }
-    function getSelectedParts(){ const boxes = Array.from(document.querySelectorAll('.bodyPart')); const checked = boxes.filter(b=>b.checked).map(b=>b.value); if(checked.includes('completo')) return ['completo']; return checked; }
+    function getSelectedParts(){
+      const boxes = Array.from(document.querySelectorAll('.bodyPart'));
+      const checked = boxes.filter(b=>b.checked).map(b=>b.value);
+      if(checked.includes('completo')) return ['completo'];
+      return checked;
+    }
 
     function calcTotal(){
       const minutes = getSelectedMinutes();
@@ -181,21 +202,37 @@
 
     function formatBR(v){ return 'R$ ' + v.toFixed(2).replace('.',','); }
 
-    function updateSummary(){ const s = calcTotal(); const out = document.getElementById('summary'); if(!s.ok){ out.innerHTML = `<div class="small" style="color:#b00">${s.message}</div>`; return; } out.innerHTML = `
+    function updateSummary(){
+      const s = calcTotal();
+      const out = document.getElementById('summary');
+      if(!s.ok){ out.innerHTML = `<div class="small" style="color:#b00">${s.message}</div>`; return; }
+      out.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
           <div class="card" style="padding:10px"> <div class="small">Duração</div><strong>${s.minutes} min</strong><div class="small">Base: ${formatBR(s.base)}</div></div>
           <div class="card" style="padding:10px"> <div class="small">Aplicação</div><strong>${getSelectedApp()}</strong><div class="small">Extra: ${formatBR(s.app)}</div></div>
           <div class="card" style="padding:10px"> <div class="small">Partes</div><strong>${s.parts.join(', ') || 'Nenhuma'}</strong><div class="small">Extra: ${formatBR(s.partsFee)}</div></div>
           <div class="card" style="padding:10px"> <div class="small">Total</div><strong style="font-size:18px">${formatBR(s.total)}</strong></div>
         </div>
-      `; }
+      `;
+    }
 
     document.getElementById('calcBtn').addEventListener('click', ()=> updateSummary());
 
-    function generatePixPayload({pixKey, amount, txid, name}){ const copia = `PIX|chave:${pixKey}|valor:${Number(amount).toFixed(2)}|txid:${txid}`; return {copia}; }
+    function generatePixPayload({pixKey, amount, txid, name}){
+      // Simulação simples de payload (copia & cola) e conteúdo para QR.
+      const copia = `PIX|chave:${pixKey}|valor:${Number(amount).toFixed(2)}|txid:${txid}`;
+      return {copia, payload:copia};
+    }
+
+    async function renderQRCode(text, container){
+      container.innerHTML = '';
+      try{ await QRCode.toCanvas(container, text, {width:220}); }
+      catch(e){ container.textContent = 'Erro ao gerar QR.'; console.error(e); }
+    }
 
     document.getElementById('pixBtn').addEventListener('click', async ()=>{
-      const s = calcTotal(); if(!s.ok){ updateSummary(); return; }
+      const s = calcTotal();
+      if(!s.ok){ updateSummary(); return; }
       const name = document.getElementById('clientName').value || 'Cliente';
       const txid = Math.random().toString(36).slice(2,10).toUpperCase();
       const p = generatePixPayload({pixKey:PIX_KEY, amount:s.total, txid, name});
@@ -203,33 +240,37 @@
         <div style="margin-top:12px">
           <div class="small">ID do pagamento: <strong>${txid}</strong></div>
           <div style="margin-top:8px;display:flex;gap:12px;align-items:flex-start">
+            <div id="qrcodeBox" class="qr"></div>
             <div style="flex:1">
               <div class="small">Valor a pagar: <strong>${formatBR(s.total)}</strong></div>
               <div class="small" style="margin-top:6px">Copie o código abaixo e cole no Pix (copia e cola)</div>
-              <textarea id="pixCopiacola" style="width:100%;height:70px;border-radius:8px;padding:8px;margin-top:6px">${p.copia}</textarea><div style="margin-top:8px" class="small">Envie comprovante pelo WhatsApp para confirmar o agendamento.</div>
+              <textarea id="pixCopiacola" style="width:100%;height:70px;border-radius:8px;padding:8px;margin-top:6px">${p.copia}</textarea>
+              <div style="margin-top:8px" class="small">Chave Pix destinatário: <strong>${PIX_KEY}</strong></div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  `;
-  document.getElementById('summary').innerHTML = resultHTML;
-});
+      `;
+      document.getElementById('summary').innerHTML = resultHTML;
+      const qbox = document.getElementById('qrcodeBox');
+      await renderQRCode(p.payload, qbox);
+    });
 
-document.getElementById('whatsBtn').addEventListener('click', ()=>{
-  const s = calcTotal(); if(!s.ok){ updateSummary(); return; }
-  const name = encodeURIComponent(document.getElementById('clientName').value || '');
-  const parts = getSelectedParts().join(', ');
-  const mins = s.minutes;
-  const total = s.total.toFixed(2).replace('.',',');
-  const phone = '5516' + '988732977';
-  const text = encodeURIComponent(`Olá! Quero agendar: ${mins} minutos (${parts}). Aplicação: ${getSelectedApp()}. Total: R$ ${total}. Nome: ${name}`);
-  window.open(`https://wa.me/${phone}?text=${text}`,'_blank');
-});
+    document.getElementById('whatsBtn').addEventListener('click', ()=>{
+      const s = calcTotal();
+      if(!s.ok){ updateSummary(); return; }
+      const name = encodeURIComponent(document.getElementById('clientName').value || '');
+      const parts = getSelectedParts().join(', ');
+      const mins = s.minutes;
+      const total = s.total.toFixed(2).replace('.',',');
+      const phone = '5516' + '988732977';
+      const text = encodeURIComponent(`Olá! Quero agendar: ${mins} minutos (${parts}). Aplicação: ${getSelectedApp()}. Total: R$ ${total}. Nome: ${name}`);
+      window.open(`https://wa.me/${phone}?text=${text}`,'_blank');
+    });
 
-document.getElementById('customMinutes').addEventListener('input', ()=>{ document.querySelectorAll('input[name="duration"]').forEach(b=>b.checked=false); updateSummary(); });
+    document.getElementById('customMinutes').addEventListener('input', ()=>{ document.querySelectorAll('.dur-btn').forEach(b=>b.classList.remove('active')); updateSummary(); });
 
-// init
-updateSummary();
-
+    // init
+    updateSummary();
   </script>
 </body>
 </html>
